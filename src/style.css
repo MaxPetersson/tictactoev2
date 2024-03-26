@@ -35,35 +35,13 @@ h1 {
   line-height: 1.1;
 }
 
-/* Probably remove me */
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
 #gameBoard {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 900px;
+  border: solid 5px black;
 }
-
-/* .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-} */
-
-.card {
-  padding: 2em;
-}
-
-/* .read-the-docs {
-  color: #888;
-} */
 
 button {
   border-radius: 8px;
@@ -95,4 +73,36 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.gameSquare {
+  float: left;
+  width: 296px;
+  height: 296px;
+  border: solid 2px black;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameSquare:hover {
+  background-color: black;
+}
+
+.symbolContainer {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameBoardContainer {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 900px;
+  border: solid 5px black;
 }

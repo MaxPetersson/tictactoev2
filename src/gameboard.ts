@@ -56,47 +56,6 @@ class GameSquare {
         changeElementsBackgroundColor(this.gameSquare, 'lightGreen');
     }
 
-    highlightRainbow(): void {
-
-        const colorCode: number = Math.floor(Math.random() * (8));
-        let color: string;
-        switch(colorCode) {
-            case 1: {
-                color = 'red';
-                break;
-            }
-            case 2: {
-                color = 'orange';
-                break;
-            }
-            case 3: {
-                color = 'yellow';
-                break;
-            }
-            case 4: {
-                color = 'lime';
-                break;
-            }
-            case 5: {
-                color = 'blue';
-                break;
-            }
-            case 6: {
-                color = 'purple';
-                break;
-            }
-            case 7: {
-                color = 'magenta';
-                break;
-            }
-            default: {
-                color = 'pink';
-                break;
-            }
-        }
-        changeElementsBackgroundColor(this.gameSquare, color);
-    }
-
     unhighlight(): void {
         changeElementsBackgroundColor(this.gameSquare, 'white');
     }
@@ -153,7 +112,6 @@ class GameBoard {
             this.gameSquares[i] = new GameSquare(i);
             this.gameBoard.appendChild(this.gameSquares[i].gameSquare);
         }
-
     }
 
     reset() {
@@ -220,10 +178,8 @@ function changeElementsBackgroundColor(element: HTMLDivElement, color: string): 
     element.style.backgroundColor = color;
 }
 
-function init() {
-    gameBoard = new GameBoard(document.getElementsByClassName('gameBoardContainer')[0] as HTMLDivElement, numberOfSquares);
+export function gameboardInit(element: HTMLDivElement) {
+    gameBoard = new GameBoard(element, numberOfSquares);
 
     gameBoard.init();
 }
-
-window.onload = init;
