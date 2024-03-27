@@ -70,17 +70,16 @@ button:focus-visible {
 #gameBoard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 900px;
+  width: 700px;;
   margin-left: auto;
   margin-right: auto;
-  height: 900px;
+  height: 700px;
   border: solid 5px black;
 }
 
 .gameSquare {
   flex-basis: calc(33.333% - 10px);
-  margin: 5px;
-  height: 296px;
+  margin: 3px;
   background-color: white;
   display: flex;
   justify-content: center;
