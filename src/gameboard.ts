@@ -30,16 +30,20 @@ class GamePiece {
 }
 
 class GameSquare {
+    gameSquare: HTMLDivElement;
+    gamePiece!: GamePiece;
+    isX: boolean = false;
+    isY: boolean = false;
+    mouseOver: EventListener;
+    mouseLeave: EventListener;
+    click: EventListener;
+
     constructor() {
         this.gameSquare = document.createElement('div') as HTMLDivElement;
         this.gameSquare.id = 'gameSquare';
-        this.isX = false;
-        this.isY = false;
 
         this.mouseOver = () => { this.highlight() };
-
         this.mouseLeave = () => { this.unhighlight() };
-
         this.click = () => {
             this.removeEventListeners();
             this.unhighlight();
@@ -90,14 +94,6 @@ class GameSquare {
             this.gameSquare.appendChild(this.gamePiece.pieceDiv);
         }
     }
-
-    gameSquare: HTMLDivElement;
-    gamePiece!: GamePiece;
-    isX: boolean;
-    isY: boolean;
-    mouseOver: EventListener;
-    mouseLeave: EventListener;
-    click: EventListener;
 }
 
 class GameBoard {
@@ -143,7 +139,7 @@ class GameBoard {
                 element.removeEventListeners();
             });
         }
-        
+
         this.drawX = !this.drawX;
     }
 
