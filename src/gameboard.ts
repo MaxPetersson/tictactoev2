@@ -7,7 +7,7 @@ class GamePiece {
 
     constructor() {
         this.pieceDiv = document.createElement('div') as HTMLDivElement;
-        this.pieceDiv.classList.add('gamePiece');
+        this.pieceDiv.id = 'gamePiece';
     }
 
     fetchImage(imageName: string): HTMLImageElement {
@@ -31,8 +31,8 @@ class GamePiece {
 
 class GameSquare {
     constructor() {
-        this.gameSquare = document.createElement('div') as HTMLDivElement
-        this.gameSquare.classList.add('gameSquare');
+        this.gameSquare = document.createElement('div') as HTMLDivElement;
+        this.gameSquare.id = 'gameSquare';
         this.isX = false;
         this.isY = false;
 
