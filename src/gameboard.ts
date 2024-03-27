@@ -50,15 +50,15 @@ class GameSquare {
     }
 
     highlight(): void {
-        changeElementsBackgroundColor(this.gameSquare, 'lightSalmon');
+        this.gameSquare.style.backgroundColor = 'lightSalmon';
     }
 
     highlightVictory(): void {
-        changeElementsBackgroundColor(this.gameSquare, 'lightGreen');
+        this.gameSquare.style.backgroundColor = 'lightGreen';
     }
 
     unhighlight(): void {
-        changeElementsBackgroundColor(this.gameSquare, 'white');
+        this.gameSquare.style.backgroundColor = 'white';
     }
 
     removeEventListeners(): void {
@@ -101,10 +101,15 @@ class GameSquare {
 }
 
 class GameBoard {
-    constructor(gameBoard_: HTMLDivElement, boardSize_: number) {
+    gameBoard: HTMLDivElement;
+    boardSize: number;
+    gameSquares: Array<GameSquare>;
+    drawX: boolean;
+    
+    constructor(gameBoard_: HTMLDivElement) {
         this.gameBoard = gameBoard_;
-        this.boardSize = boardSize_;
-        this.gameSquares = new Array(boardSize_)
+        this.boardSize = numberOfSquares;
+        this.gameSquares = new Array(numberOfSquares)
         this.drawX = true;
     }
 
@@ -155,7 +160,7 @@ class GameBoard {
         }
         return isVictory;
     }
-    
+
     calculateVictory(): boolean {
         let isVictory: boolean = false;
         isVictory = isVictory || this.calculateRow(0,1,2);
@@ -168,19 +173,10 @@ class GameBoard {
         isVictory = isVictory || this.calculateRow(2,4,6);
         return isVictory;
     }
-
-    gameBoard: HTMLDivElement;
-    boardSize: number;
-    gameSquares: Array<GameSquare>;
-    drawX: boolean;
-}
-
-function changeElementsBackgroundColor(element: HTMLDivElement, color: string): void {
-    element.style.backgroundColor = color;
 }
 
 export function gameboardInit(element: HTMLDivElement) {
-    gameBoard = new GameBoard(element, numberOfSquares);
+    gameBoard = new GameBoard(element);
 
     gameBoard.init();
 }
