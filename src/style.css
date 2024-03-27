@@ -85,3 +85,9 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
 }
+
+.gamePiece {
+  width: auto;
+  height: auto;
+  display: inline-block;
+}
