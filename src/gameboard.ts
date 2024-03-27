@@ -29,7 +29,7 @@ class GamePiece {
 }
 
 class GameSquare {
-    constructor(id_: number) {
+    constructor() {
         this.gameSquare = document.createElement('div') as HTMLDivElement
         this.gameSquare.classList.add('gameSquare');
         this.isX = false;
@@ -109,7 +109,7 @@ class GameBoard {
 
     init() {
         for (let i = 0; i < this.boardSize; i++) {
-            this.gameSquares[i] = new GameSquare(i);
+            this.gameSquares[i] = new GameSquare();
             this.gameBoard.appendChild(this.gameSquares[i].gameSquare);
         }
     }
