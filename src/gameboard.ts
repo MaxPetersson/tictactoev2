@@ -105,7 +105,7 @@ class GameBoard {
     boardSize: number;
     gameSquares: Array<GameSquare>;
     drawX: boolean;
-    
+
     constructor(gameBoard_: HTMLDivElement) {
         this.gameBoard = gameBoard_;
         this.boardSize = numberOfSquares;
