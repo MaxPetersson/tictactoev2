@@ -16,7 +16,7 @@ class GamePiece {
     if (piece == "x") {
       this.pieceDiv.appendChild(utility.fetchImage("x.jpg"));
     } else {
-      this.pieceDiv.appendChild(utlity.fetchImage("o.jpg"));
+      this.pieceDiv.appendChild(utility.fetchImage("o.jpg"));
     }
   }
 }
