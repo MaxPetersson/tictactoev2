@@ -61,14 +61,6 @@ class GameSquare {
     this.gameSquare.addEventListener("click", this.click);
   }
 
-  resetGameSquare(): void {
-    let gamePiece = this.gameSquare.firstChild;
-    if (gamePiece) {
-      this.gameSquare.removeChild(gamePiece);
-      this.addEventListeners();
-    }
-  }
-
   setGamePiece(gamePiece_: GamePiece): void {
     this.gamePiece = gamePiece_;
   }
@@ -96,13 +88,6 @@ class GameBoard {
       this.gameSquares[i] = new GameSquare();
       this.gameBoard.appendChild(this.gameSquares[i].gameSquare);
     }
-  }
-
-  reset() {
-    this.gameSquares.forEach((gameSquare: GameSquare) =>
-      gameSquare.resetGameSquare()
-    );
-    this.turn = "x";
   }
 
   playTurn(gameSquare: GameSquare) {
