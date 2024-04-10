@@ -35,30 +35,18 @@ class GameSquare {
     this.gameSquare.id = "gameSquare";
 
     this.mouseOver = () => {
-      utility.highlight(this.gameSquare);
+      utility.highlight(this.gameSquare, "lightSalmon");
     };
     this.mouseLeave = () => {
-      this.unhighlight();
+      utility.highlight(this.gameSquare, "white");
     };
     this.click = () => {
       this.removeEventListeners();
-      this.unhighlight();
+      utility.highlight(this.gameSquare, "white");
       gameBoard.playTurn(this);
     };
 
     this.addEventListeners();
-  }
-
-  //   highlight(): void {
-  //     this.gameSquare.style.backgroundColor = "lightSalmon";
-  //   }
-
-  highlightVictory(): void {
-    this.gameSquare.style.backgroundColor = "lightGreen";
-  }
-
-  unhighlight(): void {
-    this.gameSquare.style.backgroundColor = "white";
   }
 
   removeEventListeners(): void {
@@ -153,9 +141,9 @@ class GameBoard {
       this.gameSquares[square3].isX;
     isVictory = yVictory || oVictory;
     if (isVictory) {
-      this.gameSquares[square1].highlightVictory();
-      this.gameSquares[square2].highlightVictory();
-      this.gameSquares[square3].highlightVictory();
+      utility.highlight(this.gameSquares[square1].gameSquare, "lightGreen");
+      utility.highlight(this.gameSquares[square2].gameSquare, "lightGreen");
+      utility.highlight(this.gameSquares[square3].gameSquare, "lightGreen");
     }
     return isVictory;
   }
