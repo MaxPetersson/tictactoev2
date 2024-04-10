@@ -61,14 +61,19 @@ class GameSquare {
     this.gameSquare.addEventListener("click", this.click);
   }
 
-  setGamePiece(gamePiece_: GamePiece): void {
-    this.gamePiece = gamePiece_;
-  }
+  placePiece(turn: String) {
+    let gamePiece: GamePiece = new GamePiece();
 
-  renderGamePiece(): void {
-    if (this.gamePiece) {
-      this.gameSquare.appendChild(this.gamePiece.pieceDiv);
-    }
+    if (turn == "x") {
+        gamePiece.setGamePiece("x");
+        this.isX = true;
+      } else {
+        gamePiece.setGamePiece("o");
+        this.isO = true;
+      }
+
+    this.gamePiece = gamePiece;
+    this.gameSquare.appendChild(this.gamePiece.pieceDiv);
   }
 }
 
@@ -91,18 +96,7 @@ class GameBoard {
   }
 
   playTurn(gameSquare: GameSquare) {
-    let gamePiece: GamePiece = new GamePiece();
-
-    if (this.turn == "x") {
-      gamePiece.setGamePiece("x");
-      gameSquare.isX = true;
-    } else {
-      gamePiece.setGamePiece("o");
-      gameSquare.isO = true;
-    }
-
-    gameSquare.setGamePiece(gamePiece);
-    gameSquare.renderGamePiece();
+    gameSquare.placePiece(this.turn);
 
     if (this.calculateVictory()) {
       this.gameSquares.forEach((element) => {
