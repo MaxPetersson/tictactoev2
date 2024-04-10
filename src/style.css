@@ -68,18 +68,20 @@ button:focus-visible {
 }
 
 #gameBoard {
+  height: 500px;
+  width: 500px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 700px;;
+  grid-template-rows: repeat(3, 1 fr);
+  gap: 25px;
   margin-left: auto;
   margin-right: auto;
-  height: 700px;
-  border: solid 5px black;
+  border: solid 2px black;
 }
 
 #gameSquare {
-  flex-basis: calc(33.333% - 10px);
-  margin: 3px;
+  flex-basis: calc(33.333%);
+  margin: 2px;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -87,6 +89,7 @@ button:focus-visible {
 }
 
 #gamePiece {
+  /* flex-basis: calc(33.333% - 4px); */
   width: auto;
   height: auto;
   display: inline-block;
