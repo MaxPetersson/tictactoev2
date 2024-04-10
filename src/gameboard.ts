@@ -1,3 +1,5 @@
+import { fetchImage } from "./utility";
+
 let nrsInRow: number = 3;
 let numberOfSquares: number = nrsInRow * nrsInRow;
 let gameBoard: GameBoard;
@@ -10,20 +12,11 @@ class GamePiece {
     this.pieceDiv.id = "gamePiece";
   }
 
-  fetchImage(imageName: string): HTMLImageElement {
-    let imgElement = document.createElement("img");
-    imgElement.setAttribute("src", "../images/" + imageName);
-    imgElement.setAttribute("height", "100");
-    imgElement.setAttribute("width", "100");
-
-    return imgElement;
-  }
-
   setGamePiece(piece: string): void {
     if (piece == "x") {
-      this.pieceDiv.appendChild(this.fetchImage("x.jpg"));
+      this.pieceDiv.appendChild(fetchImage("x.jpg"));
     } else {
-      this.pieceDiv.appendChild(this.fetchImage("o.jpg"));
+      this.pieceDiv.appendChild(fetchImage("o.jpg"));
     }
   }
 }
