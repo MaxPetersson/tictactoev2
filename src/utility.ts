@@ -6,3 +6,7 @@ export function fetchImage(imageName: string): HTMLImageElement {
 
   return imgElement;
 }
+
+export function highlight(element: HTMLDivElement): void {
+  element.style.backgroundColor = "lightSalmon";
+}

@@ -1,4 +1,4 @@
-import { fetchImage } from "./utility";
+import * as utility from "./utility";
 
 let nrsInRow: number = 3;
 let numberOfSquares: number = nrsInRow * nrsInRow;
@@ -14,9 +14,9 @@ class GamePiece {
 
   setGamePiece(piece: string): void {
     if (piece == "x") {
-      this.pieceDiv.appendChild(fetchImage("x.jpg"));
+      this.pieceDiv.appendChild(utility.fetchImage("x.jpg"));
     } else {
-      this.pieceDiv.appendChild(fetchImage("o.jpg"));
+      this.pieceDiv.appendChild(utlity.fetchImage("o.jpg"));
     }
   }
 }
@@ -35,7 +35,7 @@ class GameSquare {
     this.gameSquare.id = "gameSquare";
 
     this.mouseOver = () => {
-      this.highlight();
+      utility.highlight(this.gameSquare);
     };
     this.mouseLeave = () => {
       this.unhighlight();
@@ -49,9 +49,9 @@ class GameSquare {
     this.addEventListeners();
   }
 
-  highlight(): void {
-    this.gameSquare.style.backgroundColor = "lightSalmon";
-  }
+  //   highlight(): void {
+  //     this.gameSquare.style.backgroundColor = "lightSalmon";
+  //   }
 
   highlightVictory(): void {
     this.gameSquare.style.backgroundColor = "lightGreen";
