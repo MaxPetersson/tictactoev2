@@ -94,13 +94,12 @@ class GameSquare {
 
 class GameBoard {
   gameBoard: HTMLDivElement;
-  boardSize: number;
+  boardSize: number = numberOfSquares;
   gameSquares: Array<GameSquare>;
   turn: string = "x";
 
   constructor(gameBoard_: HTMLDivElement) {
     this.gameBoard = gameBoard_;
-    this.boardSize = numberOfSquares;
     this.gameSquares = new Array(numberOfSquares);
   }
 
