@@ -65,12 +65,12 @@ class GameSquare {
     let gamePiece: GamePiece = new GamePiece();
 
     if (turn == "x") {
-        gamePiece.setGamePiece("x");
-        this.isX = true;
-      } else {
-        gamePiece.setGamePiece("o");
-        this.isO = true;
-      }
+      gamePiece.setGamePiece("x");
+      this.isX = true;
+    } else {
+      gamePiece.setGamePiece("o");
+      this.isO = true;
+    }
 
     this.gamePiece = gamePiece;
     this.gameSquare.appendChild(this.gamePiece.pieceDiv);
