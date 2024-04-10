@@ -122,6 +122,7 @@ class GameBoard {
 
     playTurn(gameSquare: GameSquare) {
         let gamePiece: GamePiece = new GamePiece();
+
         if (this.turn == "x") {
             gamePiece.setGamePiece('x')
             gameSquare.isX = true;
@@ -133,19 +134,15 @@ class GameBoard {
 
         gameSquare.setGamePiece(gamePiece);
         gameSquare.renderGamePiece();
+
         if (this.calculateVictory()) {
             this.gameSquares.forEach(element => {
                 element.removeEventListeners();
             });
         }
 
-        //Lambda me
-        if (this.turn == "x") {
-            this.turn = "o";
-        }
-        else {
-            this.turn = "x";
-        }
+        // Next player's turn.
+        this.turn = this.turn == "x" ? "o" : "x";
     }
 
     checkRow(square1: number, square2: number, square3: number): boolean {
