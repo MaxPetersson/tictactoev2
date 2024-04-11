@@ -86,16 +86,27 @@ class GameBoard {
   boardSize: number = numberOfSquares;
   gameSquares: Array<GameSquare>;
   turn: "X" | "O" = "X";
+  private board!: GameSquare[][];
 
   constructor(gameBoard_: HTMLDivElement) {
     this.gameBoard = gameBoard_;
     this.gameSquares = new Array(numberOfSquares);
+
+    this.board = [];
+    for (let i = 0; i < 3; i++) {
+      this.board.push([]);
+      for (let j = 0; j < 3; j++) {
+        this.board[i].push(new GameSquare());
+        this.gameBoard.appendChild(this.board[i][j].gameSquare);
+      }
+    }
   }
 
-  init() {
-    for (let i = 0; i < this.boardSize; i++) {
-      this.gameSquares[i] = new GameSquare();
-      this.gameBoard.appendChild(this.gameSquares[i].gameSquare);
+  removeAllEventListeners() {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        this.board[i][j].removeEventListeners();
+      }
     }
   }
 
@@ -103,9 +114,7 @@ class GameBoard {
     gameSquare.placePiece(this.turn);
 
     if (this.calculateVictory()) {
-      this.gameSquares.forEach((element) => {
-        element.removeEventListeners();
-      });
+      this.removeAllEventListeners();
     }
 
     // Next player's turn.
@@ -125,23 +134,67 @@ class GameBoard {
     return isVictory;
   }
 
-  calculateVictory(): boolean {
-    let isVictory: boolean = false;
+  checkColumns(): boolean {
+    for (let i = 0; i < 3; i++) {
+      if (
+        this.board[0][i].placedTile !== null &&
+        this.board[0][i].placedTile === this.board[1][i].placedTile &&
+        this.board[0][i].placedTile === this.board[2][i].placedTile
+      ) {
+        utility.highlight(this.board[0][i].gameSquare, "lightGreen");
+        utility.highlight(this.board[1][i].gameSquare, "lightGreen");
+        utility.highlight(this.board[2][i].gameSquare, "lightGreen");
+        return true;
+      }
+    }
+    return false;
+  }
 
-    isVictory = isVictory || this.checkRow(0, 1, 2);
-    isVictory = isVictory || this.checkRow(3, 4, 5);
-    isVictory = isVictory || this.checkRow(6, 7, 8);
-    isVictory = isVictory || this.checkRow(0, 3, 6);
-    isVictory = isVictory || this.checkRow(1, 4, 7);
-    isVictory = isVictory || this.checkRow(2, 5, 8);
-    isVictory = isVictory || this.checkRow(0, 4, 8);
-    isVictory = isVictory || this.checkRow(2, 4, 6);
-    return isVictory;
+  checkRows(): boolean {
+    for (let i = 0; i < 3; i++) {
+      if (
+        this.board[i][0].placedTile !== null &&
+        this.board[i][0].placedTile === this.board[i][1].placedTile &&
+        this.board[i][0].placedTile === this.board[i][2].placedTile
+      ) {
+        utility.highlight(this.board[i][0].gameSquare, "lightGreen");
+        utility.highlight(this.board[i][1].gameSquare, "lightGreen");
+        utility.highlight(this.board[i][2].gameSquare, "lightGreen");
+        return true;
+      }
+    }
+    return false;
+  }
+
+  checkDiagonals(): boolean {
+    if (
+      this.board[0][0].placedTile !== null &&
+      this.board[0][0].placedTile === this.board[1][1].placedTile &&
+      this.board[0][0].placedTile === this.board[2][2].placedTile
+    ) {
+      utility.highlight(this.board[0][0].gameSquare, "lightGreen");
+      utility.highlight(this.board[1][1].gameSquare, "lightGreen");
+      utility.highlight(this.board[2][2].gameSquare, "lightGreen");
+      return true;
+    } else if (
+      this.board[0][2].placedTile !== null &&
+      this.board[0][2].placedTile === this.board[1][1].placedTile &&
+      this.board[0][2].placedTile === this.board[2][0].placedTile
+    ) {
+      utility.highlight(this.board[0][2].gameSquare, "lightGreen");
+      utility.highlight(this.board[1][1].gameSquare, "lightGreen");
+      utility.highlight(this.board[2][0].gameSquare, "lightGreen");
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  calculateVictory(): boolean {
+    return this.checkDiagonals() || this.checkColumns() || this.checkRows();
   }
 }
 
 export function gameboardInit(element: HTMLDivElement) {
   gameBoard = new GameBoard(element);
-
-  gameBoard.init();
 }
