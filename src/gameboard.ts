@@ -24,8 +24,7 @@ class GamePiece {
 class GameSquare {
   gameSquare: HTMLDivElement;
   gamePiece!: GamePiece;
-  isX: boolean = false;
-  isO: boolean = false;
+  placedTile: 'X' | 'O' | null;
   mouseOver: EventListener;
   mouseLeave: EventListener;
   click: EventListener;
@@ -33,6 +32,7 @@ class GameSquare {
   constructor() {
     this.gameSquare = document.createElement("div") as HTMLDivElement;
     this.gameSquare.id = "gameSquare";
+    this.placedTile = null;
 
     this.mouseOver = () => {
       utility.highlight(this.gameSquare, "lightSalmon");
@@ -50,7 +50,7 @@ class GameSquare {
   }
 
   toString = (): string => {
-    return this.isX ? "GS is: X" : "GS is: O";
+    return this.placedTile != null ? this.placedTile : "Empty tile!";
   };
 
   removeEventListeners(): void {
@@ -70,10 +70,10 @@ class GameSquare {
 
     if (turn == "x") {
       gamePiece.setGamePiece("x");
-      this.isX = true;
+      this.placedTile = "X";
     } else {
       gamePiece.setGamePiece("o");
-      this.isO = true;
+      this.placedTile = "O";
     }
 
     this.gamePiece = gamePiece;
@@ -85,7 +85,7 @@ class GameBoard {
   gameBoard: HTMLDivElement;
   boardSize: number = numberOfSquares;
   gameSquares: Array<GameSquare>;
-  turn: string = "x";
+  turn: 'x' | 'o' = 'x';
 
   constructor(gameBoard_: HTMLDivElement) {
     this.gameBoard = gameBoard_;
@@ -109,19 +109,19 @@ class GameBoard {
     }
 
     // Next player's turn.
-    this.turn = this.turn == "x" ? "o" : "x";
+    this.turn = this.turn === "x" ? "o" : "x";
   }
 
   checkRow(square1: number, square2: number, square3: number): boolean {
     let isVictory: boolean = false;
     const oVictory: boolean =
-      this.gameSquares[square1].isO &&
-      this.gameSquares[square2].isO &&
-      this.gameSquares[square3].isO;
+      this.gameSquares[square1].placedTile == 'O' &&
+      this.gameSquares[square2].placedTile == 'O' &&
+      this.gameSquares[square3].placedTile == 'O';
     const xVictory: boolean =
-      this.gameSquares[square1].isX &&
-      this.gameSquares[square2].isX &&
-      this.gameSquares[square3].isX;
+      this.gameSquares[square1].placedTile == 'X' &&
+      this.gameSquares[square2].placedTile == 'X' &&
+      this.gameSquares[square3].placedTile == 'X';
     isVictory = oVictory || xVictory;
     if (isVictory) {
       utility.highlight(this.gameSquares[square1].gameSquare, "lightGreen");
@@ -134,10 +134,6 @@ class GameBoard {
   calculateVictory(gameSquare: GameSquare): boolean {
     console.log("GameSquare to check: " + gameSquare.toString());
     let isVictory: boolean = false;
-
-    this.gameSquares.forEach(gameSquare => {
-        console.log("gamesquare is" + gameSquare.isX);
-    });
 
     isVictory = isVictory || this.checkRow(0, 1, 2);
     isVictory = isVictory || this.checkRow(3, 4, 5);
