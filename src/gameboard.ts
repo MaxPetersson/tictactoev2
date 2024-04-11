@@ -49,6 +49,10 @@ class GameSquare {
     this.addEventListeners();
   }
 
+  toString = (): string => {
+    return this.isX ? "GS is: X" : "GS is: O";
+  };
+
   removeEventListeners(): void {
     this.gameSquare.removeEventListener("mouseover", this.mouseOver);
     this.gameSquare.removeEventListener("mouseleave", this.mouseLeave);
@@ -98,7 +102,7 @@ class GameBoard {
   playTurn(gameSquare: GameSquare) {
     gameSquare.placePiece(this.turn);
 
-    if (this.calculateVictory()) {
+    if (this.calculateVictory(gameSquare)) {
       this.gameSquares.forEach((element) => {
         element.removeEventListeners();
       });
@@ -110,15 +114,15 @@ class GameBoard {
 
   checkRow(square1: number, square2: number, square3: number): boolean {
     let isVictory: boolean = false;
-    const yVictory: boolean =
+    const oVictory: boolean =
       this.gameSquares[square1].isO &&
       this.gameSquares[square2].isO &&
       this.gameSquares[square3].isO;
-    const oVictory: boolean =
+    const xVictory: boolean =
       this.gameSquares[square1].isX &&
       this.gameSquares[square2].isX &&
       this.gameSquares[square3].isX;
-    isVictory = yVictory || oVictory;
+    isVictory = oVictory || xVictory;
     if (isVictory) {
       utility.highlight(this.gameSquares[square1].gameSquare, "lightGreen");
       utility.highlight(this.gameSquares[square2].gameSquare, "lightGreen");
@@ -127,8 +131,13 @@ class GameBoard {
     return isVictory;
   }
 
-  calculateVictory(): boolean {
+  calculateVictory(gameSquare: GameSquare): boolean {
+    console.log("GameSquare to check: " + gameSquare.toString());
     let isVictory: boolean = false;
+
+    this.gameSquares.forEach(gameSquare => {
+        console.log("gamesquare is" + gameSquare.isX);
+    });
 
     isVictory = isVictory || this.checkRow(0, 1, 2);
     isVictory = isVictory || this.checkRow(3, 4, 5);
