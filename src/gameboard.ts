@@ -1,11 +1,31 @@
 import * as utility from "./utility";
 
 class GamePiece {
-  pieceDiv: HTMLDivElement;
+  pieceDiv!: HTMLDivElement;
 
   constructor(turn: "X" | "O") {
+    turn == "X" ? this.placeX() : this.placeO();
+  }
+
+  placeX() {
     this.pieceDiv = document.createElement("div") as HTMLDivElement;
-    this.pieceDiv.id = turn == "X" ? "gamePiece-X" : "gamePiece-O";
+
+    // Create two additional div's and give them X-Right and X-Left classes
+    // respectively and append them to the pieceDiv which is already appended
+    // to a parent div.
+    let pieceDivR = document.createElement("div") as HTMLDivElement;
+    let pieceDivL = document.createElement("div") as HTMLDivElement;
+
+    pieceDivR.classList.add("gamePiece-X-Right");
+    pieceDivL.classList.add("gamePiece-X-Left");
+
+    this.pieceDiv.appendChild(pieceDivR);
+    this.pieceDiv.appendChild(pieceDivL);
+  }
+
+  placeO() {
+    this.pieceDiv = document.createElement("div") as HTMLDivElement;
+    this.pieceDiv.classList.add("gamePiece-O");
   }
 }
 

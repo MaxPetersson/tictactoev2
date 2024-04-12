@@ -86,17 +86,26 @@ button:focus-visible {
   align-items: center;
 }
 
-#gamePiece-X {
+.gamePiece-X-Left {
   position: relative;
+  height: 20px;
+  width: 100px;
+  background-color: black;
+  transform: rotate(-45deg);
+}
+
+.gamePiece-X-Right {
+  position: absolute;
+  height: 20px;
+  width: 100px;
+  background-color: black;
+  transform: rotate(45deg);
+}
+
+.gamePiece-O {
+  position: absolute;
   height: 100px;
   width: 100px;
   background-color: black;
-}
-
-#gamePiece-O {
-  position: relative;
-  height: 100px;
-  width: 100px;
-  background-color: blue;
   border-radius: 50%;
 }
