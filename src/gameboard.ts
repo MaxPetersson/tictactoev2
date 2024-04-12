@@ -6,7 +6,6 @@ class GamePiece {
   constructor(turn: "X" | "O") {
     this.pieceDiv = document.createElement("div") as HTMLDivElement;
     this.pieceDiv.id = turn == "X" ? "gamePiece-X" : "gamePiece-O";
-    console.log("Turn is: " + turn);
   }
 }
 
