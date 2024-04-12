@@ -1,7 +1,5 @@
 import * as utility from "./utility";
 
-let gameBoard: GameBoard;
-
 class GamePiece {
   pieceDiv: HTMLDivElement;
 
@@ -22,12 +20,12 @@ class GamePiece {
 class GameSquare {
   gameSquare: HTMLDivElement;
   gamePiece!: GamePiece;
-  placedTile: "X" | "O" | null;
+  placedTile: 'X' | 'O' | null;
   private mouseOver: EventListener;
   private mouseLeave: EventListener;
   private click: EventListener;
 
-  constructor() {
+  constructor(gameBoard: GameBoard) {
     this.gameSquare = document.createElement("div") as HTMLDivElement;
     this.gameSquare.id = "gameSquare";
     this.placedTile = null;
@@ -63,7 +61,7 @@ class GameSquare {
     this.gameSquare.addEventListener("click", this.click);
   }
 
-  placePiece(turn: String) {
+  placePiece(turn: 'X' | 'O') {
     let gamePiece: GamePiece = new GamePiece();
 
     if (turn === "X") {
@@ -82,7 +80,7 @@ class GameSquare {
 class GameBoard {
   gameBoard: HTMLDivElement;
   boardSize: number = 9;
-  turn: "X" | "O" = "X";
+  turn: 'X' | 'O' = 'X';
   private board!: GameSquare[][];
 
   constructor(gameBoard_: HTMLDivElement) {
@@ -92,7 +90,7 @@ class GameBoard {
     for (let i = 0; i < 3; i++) {
       this.board.push([]);
       for (let j = 0; j < 3; j++) {
-        this.board[i].push(new GameSquare());
+        this.board[i].push(new GameSquare(this));
         this.gameBoard.appendChild(this.board[i][j].gameSquare);
       }
     }
@@ -179,5 +177,5 @@ class GameBoard {
 }
 
 export function gameboardInit(element: HTMLDivElement) {
-  gameBoard = new GameBoard(element);
+  new GameBoard(element);
 }
