@@ -86,7 +86,18 @@ button:focus-visible {
   align-items: center;
 }
 
-#gamePiece {
-  width: auto; 
-  height: auto;
+#gamePiece-X {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: black;
+}
+
+#gamePiece-O {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+  border-radius: 50%;
+
 }

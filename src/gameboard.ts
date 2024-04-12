@@ -3,24 +3,17 @@ import * as utility from "./utility";
 class GamePiece {
   pieceDiv: HTMLDivElement;
 
-  constructor() {
+  constructor(turn: "X" | "O") {
     this.pieceDiv = document.createElement("div") as HTMLDivElement;
-    this.pieceDiv.id = "gamePiece";
-  }
-
-  setGamePiece(piece: string): void {
-    if (piece == "x") {
-      this.pieceDiv.appendChild(utility.fetchImage("x.jpg"));
-    } else {
-      this.pieceDiv.appendChild(utility.fetchImage("o.jpg"));
-    }
+    this.pieceDiv.id = turn == "X" ? "gamePiece-X" : "gamePiece-O";
+    console.log("Turn is: " + turn);
   }
 }
 
 class GameSquare {
   gameSquare: HTMLDivElement;
   gamePiece!: GamePiece;
-  placedTile: 'X' | 'O' | null;
+  placedTile: "X" | "O" | null;
   private mouseOver: EventListener;
   private mouseLeave: EventListener;
   private click: EventListener;
@@ -61,14 +54,14 @@ class GameSquare {
     this.gameSquare.addEventListener("click", this.click);
   }
 
-  placePiece(turn: 'X' | 'O') {
-    let gamePiece: GamePiece = new GamePiece();
+  placePiece(turn: "X" | "O") {
+    let gamePiece: GamePiece = new GamePiece(turn);
 
     if (turn === "X") {
-      gamePiece.setGamePiece("x");
+      //gamePiece.setGamePiece("x");
       this.placedTile = "X";
     } else {
-      gamePiece.setGamePiece("o");
+      //gamePiece.setGamePiece("o");
       this.placedTile = "O";
     }
 
@@ -80,7 +73,7 @@ class GameSquare {
 class GameBoard {
   gameBoard: HTMLDivElement;
   boardSize: number = 9;
-  turn: 'X' | 'O' = 'X';
+  turn: "X" | "O" = "X";
   private board!: GameSquare[][];
 
   constructor(gameBoard_: HTMLDivElement) {
