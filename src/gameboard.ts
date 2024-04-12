@@ -1,7 +1,6 @@
 import * as utility from "./utility";
 
-let nrsInRow: number = 3;
-let numberOfSquares: number = nrsInRow * nrsInRow;
+let numberOfSquares: number = 9
 let gameBoard: GameBoard;
 
 class GamePiece {
@@ -25,9 +24,9 @@ class GameSquare {
   gameSquare: HTMLDivElement;
   gamePiece!: GamePiece;
   placedTile: "X" | "O" | null;
-  mouseOver: EventListener;
-  mouseLeave: EventListener;
-  click: EventListener;
+  private mouseOver: EventListener;
+  private mouseLeave: EventListener;
+  private click: EventListener;
 
   constructor() {
     this.gameSquare = document.createElement("div") as HTMLDivElement;
@@ -83,16 +82,14 @@ class GameSquare {
 
 class GameBoard {
   gameBoard: HTMLDivElement;
-  boardSize: number = numberOfSquares;
-  gameSquares: Array<GameSquare>;
+  boardSize: number = 9;
   turn: "X" | "O" = "X";
   private board!: GameSquare[][];
 
   constructor(gameBoard_: HTMLDivElement) {
     this.gameBoard = gameBoard_;
-    this.gameSquares = new Array(numberOfSquares);
-
     this.board = [];
+    
     for (let i = 0; i < 3; i++) {
       this.board.push([]);
       for (let j = 0; j < 3; j++) {
@@ -119,19 +116,6 @@ class GameBoard {
 
     // Next player's turn.
     this.turn = this.turn === "X" ? "O" : "X";
-  }
-
-  checkRow(square1: number, square2: number, square3: number): boolean {
-    let isVictory: boolean =
-      this.gameSquares[square1].placedTile == this.turn &&
-      this.gameSquares[square2].placedTile == this.turn &&
-      this.gameSquares[square3].placedTile == this.turn;
-    if (isVictory) {
-      utility.highlight(this.gameSquares[square1].gameSquare, "lightGreen");
-      utility.highlight(this.gameSquares[square2].gameSquare, "lightGreen");
-      utility.highlight(this.gameSquares[square3].gameSquare, "lightGreen");
-    }
-    return isVictory;
   }
 
   checkColumns(): boolean {
