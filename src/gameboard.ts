@@ -25,6 +25,8 @@ class GamePiece {
 
   placeO() {
     this.pieceDiv = document.createElement("div") as HTMLDivElement;
+
+    // "O" only needs one div (using radius to create a circle).
     this.pieceDiv.classList.add("gamePiece-O");
   }
 }
