@@ -1,6 +1,5 @@
 import * as utility from "./utility";
 
-let numberOfSquares: number = 9
 let gameBoard: GameBoard;
 
 class GamePiece {
@@ -89,7 +88,7 @@ class GameBoard {
   constructor(gameBoard_: HTMLDivElement) {
     this.gameBoard = gameBoard_;
     this.board = [];
-    
+
     for (let i = 0; i < 3; i++) {
       this.board.push([]);
       for (let j = 0; j < 3; j++) {
