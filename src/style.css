@@ -67,7 +67,7 @@ button:focus-visible {
   }
 }
 
-#gameBoard {
+.gameBoard {
   height: 600px;
   width: 600px;
   display: grid;
@@ -78,7 +78,7 @@ button:focus-visible {
   margin-right: auto;
 }
 
-#gameSquare {
+.gameSquare {
   flex-basis: calc(33.333%);
   background-color: white;
   display: flex;
@@ -99,5 +99,4 @@ button:focus-visible {
   width: 100px;
   background-color: blue;
   border-radius: 50%;
-
 }

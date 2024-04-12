@@ -20,7 +20,7 @@ class GameSquare {
 
   constructor(gameBoard: GameBoard) {
     this.gameSquare = document.createElement("div") as HTMLDivElement;
-    this.gameSquare.id = "gameSquare";
+    this.gameSquare.classList.add("gameSquare");
     this.placedTile = null;
 
     this.mouseOver = () => {
