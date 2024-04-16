@@ -10,4 +10,12 @@ describe("tictactoe", () => {
     // Use cy.get() to select the div element by its class
     cy.get(".gameSquare").should("have.length", 9);
   });
+  it("Check that gameBoard exists.", () => {
+    cy.get('.gameBoard').should('exist');
+  });
+});
+
+
+
+
 });
