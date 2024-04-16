@@ -1,6 +1,6 @@
 To launch project:
 
-Run "npm run dev" in root directory.
+Run `npm run dev` in root directory.
 
 To execute tests the fast and easy way, run:
 npx cypress run
