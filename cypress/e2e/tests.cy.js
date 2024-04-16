@@ -13,8 +13,17 @@ describe("tictactoe", () => {
   it("Check that gameBoard exists.", () => {
     cy.get('.gameBoard').should('exist');
   });
-});
+it('check mouseover', () => {
+  // Assuming you already have the page loaded and don't need to visit it again
 
+  // Trigger mouseover event on the .gameSquare element
+  cy.get('.gameSquare').trigger('mouseover');
+
+  // Check if the color of the .gameSquare changes to 'lightSalmon'
+  cy.get('.gameSquare')
+    .should('have.css', 'background-color')
+    .and('equal', 'rgb(255, 160, 122)'); // 'lightSalmon' color in rgb format
+});
 
 
 
