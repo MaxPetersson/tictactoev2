@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("tictactoe", () => {
+describe("tictactoe DOM checkers", () => {
   beforeEach(() => {
     // Run before each test case, basically - visit the page.
     cy.visit("http://localhost:5174/");
@@ -15,7 +15,7 @@ describe("tictactoe", () => {
     cy.get(".gameBoard").should("exist");
   });
 
-  it("check mouseover", () => {
+  it("Check mouseover", () => {
     // Trigger mouseover event on the first .gameSquare element
     cy.get(".gameSquare").eq(0).trigger("mouseover");
 
@@ -24,5 +24,15 @@ describe("tictactoe", () => {
       .eq(0)
       .should("have.css", "background-color")
       .and("equal", "rgb(255, 160, 122)"); // 'lightSalmon' color in rgb format
+  });
+});
+
+describe("tictactoe Playflow", () => {
+  beforeEach(() => {
+    // Run before each test case, basically - visit the page.
+    cy.visit("http://localhost:5174/");
+  });
+  it("Play a move.", () => {
+    cy.get(".gameSquare").eq(4).click();
   });
 });
