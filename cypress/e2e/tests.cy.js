@@ -3,7 +3,7 @@
 describe("tictactoe DOM checkers", () => {
   beforeEach(() => {
     // Run before each test case, basically - visit the page.
-    cy.visit("http://localhost:5174/");
+    cy.visit("/");
   });
 
   it("Checking so a gamesquare exists, yay.", () => {
@@ -30,7 +30,7 @@ describe("tictactoe DOM checkers", () => {
 describe("tictactoe Playflow", () => {
   beforeEach(() => {
     // Run before each test case, basically - visit the page.
-    cy.visit("http://localhost:5174/");
+    cy.visit("/");
   });
   it("Play a move.", () => {
     cy.get(".gameSquare").eq(4).click();
