@@ -2,7 +2,6 @@
 
 describe("tictactoe DOM checkers", () => {
   beforeEach(() => {
-    // Run before each test case, basically - visit the page.
     cy.visit("/");
   });
 
@@ -29,10 +28,31 @@ describe("tictactoe DOM checkers", () => {
 
 describe("tictactoe Playflow", () => {
   beforeEach(() => {
-    // Run before each test case, basically - visit the page.
     cy.visit("/");
   });
   it("Play a move.", () => {
     cy.get(".gameSquare").eq(4).click();
+    cy.get(".gameSquare").eq(1).click();
+  });
+
+  it("Win a game.", () => {
+    cy.get(".gameSquare").eq(4).click();
+    cy.get(".gameSquare").eq(1).click();
+    cy.get(".gameSquare").eq(2).click();
+    cy.get(".gameSquare").eq(3).click();
+    cy.get(".gameSquare").eq(6).click();
+
+    cy.get(".gameSquare")
+      .eq(4)
+      .should("have.css", "background-color")
+      .and("equal", "rgb(144, 238, 144)"); // 'lightGreen' color in rgb format
+    cy.get(".gameSquare")
+      .eq(2)
+      .should("have.css", "background-color")
+      .and("equal", "rgb(144, 238, 144)"); // 'lightGreen' color in rgb format
+    cy.get(".gameSquare")
+      .eq(6)
+      .should("have.css", "background-color")
+      .and("equal", "rgb(144, 238, 144)"); // 'lightGreen' color in rgb format
   });
 });
