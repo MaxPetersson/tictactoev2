@@ -13,24 +13,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
+.main {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
 
 .gameBoard {
-  height: 600px;
   min-height: 300px;
-  width: 600px;
+  height: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  grid-template-columns: repeat(3, minmax(100px, 200px));
+  grid-template-rows: repeat(3, minmax(100px, 200px));
+  gap: 8px;
 }
 
 .gameSquare {
