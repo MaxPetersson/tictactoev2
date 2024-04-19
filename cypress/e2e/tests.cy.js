@@ -30,6 +30,7 @@ describe("tictactoe Playflow", () => {
   beforeEach(() => {
     cy.visit("/");
   });
+
   it("Play a move.", () => {
     cy.get(".gameSquare").eq(4).click();
     cy.get(".gameSquare").eq(1).click();
