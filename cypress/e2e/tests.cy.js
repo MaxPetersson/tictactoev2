@@ -55,4 +55,16 @@ describe("tictactoe Playflow", () => {
       .should("have.css", "background-color")
       .and("equal", "rgb(144, 238, 144)"); // 'lightGreen' color in rgb format
   });
+
+  it("Draw a game.", () => {
+    cy.get(".gameSquare").eq(0).click();
+    cy.get(".gameSquare").eq(1).click();
+    cy.get(".gameSquare").eq(2).click();
+    cy.get(".gameSquare").eq(3).click();
+    cy.get(".gameSquare").eq(4).click();
+    cy.get(".gameSquare").eq(8).click();
+    cy.get(".gameSquare").eq(5).click();
+    cy.get(".gameSquare").eq(6).click();
+    cy.get(".gameSquare").eq(7).click();
+  });
 });
