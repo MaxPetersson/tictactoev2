@@ -118,11 +118,31 @@ class GameBoard {
     }
   }
 
+  isBoardFull() {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (this.board[i][j].placedTile == null) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  resetGameBoard() {
+    console.log("trying to reset gameboard");
+  }
+
   playTurn(gameSquare: GameSquare) {
     gameSquare.placePiece(this.turn);
 
     if (this.calculateVictory()) {
       this.removeAllEventListeners();
+      this.resetGameBoard();
+    } else {
+      if (this.isBoardFull()) {
+        this.resetGameBoard();
+      }
     }
 
     // Next player's turn.
