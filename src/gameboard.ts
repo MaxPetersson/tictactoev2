@@ -131,6 +131,7 @@ class GameBoard {
 
   resetGameBoard() {
     console.log("trying to reset gameboard");
+    new GameBoard(document.querySelector<HTMLDivElement>(".gameBoard")!);
   }
 
   playTurn(gameSquare: GameSquare) {
