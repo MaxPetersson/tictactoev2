@@ -94,12 +94,27 @@ class GameSquare {
 class GameBoard {
   gameBoard: HTMLDivElement;
   boardSize: number = 9;
-  turn: "X" | "O" = "X";
+  turn!: "X" | "O";
   private board!: GameSquare[][];
 
   constructor(gameBoard_: HTMLDivElement) {
     this.gameBoard = gameBoard_;
     this.board = [];
+
+    this.initGameBoard();
+  }
+
+  clearGameBoard() {
+    while (this.gameBoard.firstChild) {
+      this.gameBoard.removeChild(this.gameBoard.firstChild);
+    }
+
+    this.board = [];
+    this.initGameBoard();
+  }
+
+  initGameBoard() {
+    this.turn = "X";
 
     for (let i = 0; i < 3; i++) {
       this.board.push([]);
@@ -131,7 +146,7 @@ class GameBoard {
 
   resetGameBoard() {
     console.log("trying to reset gameboard");
-    new GameBoard(document.querySelector<HTMLDivElement>(".gameBoard")!);
+    this.clearGameBoard();
   }
 
   playTurn(gameSquare: GameSquare) {
