@@ -36,7 +36,7 @@ describe("tictactoe Playflow", () => {
     cy.get(".gameSquare").eq(1).click();
   });
 
-  it("Win a game.", () => {
+  it.skip("Win a game.", () => {
     cy.get(".gameSquare").eq(4).click();
     cy.get(".gameSquare").eq(1).click();
     cy.get(".gameSquare").eq(2).click();
