@@ -146,23 +146,23 @@ class GameBoard {
 
   resetGameBoard() {
     console.log("trying to reset gameboard");
+    this.removeAllEventListeners();
     this.clearGameBoard();
   }
 
   playTurn(gameSquare: GameSquare) {
     gameSquare.placePiece(this.turn);
 
+    // Next player's turn.
+    this.turn = this.turn === "X" ? "O" : "X";
+
     if (this.calculateVictory()) {
-      this.removeAllEventListeners();
       this.resetGameBoard();
     } else {
       if (this.isBoardFull()) {
         this.resetGameBoard();
       }
     }
-
-    // Next player's turn.
-    this.turn = this.turn === "X" ? "O" : "X";
   }
 
   checkColumns(): boolean {
